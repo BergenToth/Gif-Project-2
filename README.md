@@ -12,3 +12,9 @@ You can increase or decrease the offset pagination of the website by clicking th
 HTML: For creating the structure and content of the website.
 CSS: For styling and designing the layout of the website, ensuring it looks appealing and is easy to navigate.
 Java Script: For creating the functionality of the website and its clickable buttons. 
+
+User Stories:
+
+1: As a user, I want to search for GIFs by entering a search term so that I can easily find GIFs that match my interests. 
+2: As a user, I want to navigate through the GIF results using the offset buttons so that I can view more results without reloading the page. 
+3: As a user, I want the page layout to adjust based on my device's screen size so that the website is usable on both desktop and mobile devices.
