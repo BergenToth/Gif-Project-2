@@ -1,0 +1,14 @@
+body {
+  margin: 40px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.js-button {
+  background-color: aqua;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
