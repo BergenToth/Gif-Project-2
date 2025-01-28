@@ -1,14 +1,144 @@
 body {
   margin: 40px;
   font-family: 'Courier New', Courier, monospace;
+  background-color: lightcyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .js-button {
   background-color: aqua;
   border: none;
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   font-size: 20px;
   cursor: pointer;
-  margin-right: 10px;
+}
+
+#searchInput {
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 20px;  
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.js-buttons-container {
+  padding: 20px;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  background-color: lightblue;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#outputArea {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  height: 400px;
+}
+
+.offset-button {
+  background-color: lightcyan;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.grid-item {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  width: 200px;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 320px) {
+  h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .js-buttons-container {
+    flex-direction: column;
+    display: flex;
+  }
+
+  #searchInput {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .js-button, .offset-button {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  #outputArea {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; 
+  }
+
+  .grid-item {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .js-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .js-button, .offset-button {
+    margin-bottom: 10px;
+    width: 100%; 
+  }
+
+  #outputArea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 769px) {
+  .grid-item {
+    flex: 1 1 30%;
+    max-width: 30%;
+  }
+
+  #outputArea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 }

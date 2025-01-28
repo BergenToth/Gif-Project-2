@@ -3,32 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+  <title>Giphy Generator</title>
 </head>
 <body>
   <h1>Giphy Generator</h1>
-<form action="#" class="gif-form" method="GET"></form>
+  <div class="js-buttons-container col-12 col-md-4 col-lg-4">
   <input type="text" id="searchInput" placeholder="Search!" />
-<div>
-  <button 
-    onclick="handleRandomClick()">Random
-  </button>
 
-  <button
-    onclick="handleTranslateClick()">Translate
-  </button>
+  <button class="js-button" onclick="handleRandomClick()">Random</button>
 
-  <button
-    onclick="handleSearchClick()">Search
-  </button>
+  <button class="js-button" onclick="handleTranslateClick()">Translate</button>
 
-  <button id="disabled" onclick="offsetDecrease()"> < </button>
+  <button class="js-button" onclick="handleSearchClick()">Search</button>
 
-  <button onclick="offsetIncrease()"> > </button>
+  <button id="disabled" class="offset-button" onclick="offsetDecrease()"> < </button>
+
+  <button class="offset-button" onclick="offsetIncrease()"> > </button>
 </div>
 </form>
 
-<div id="outputArea"></div>
+<div id="outputArea" class="grid-container col-12 col-md-4 col-lg-4"></div>
 
 
 

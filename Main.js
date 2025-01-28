@@ -1,6 +1,5 @@
-
 function handleRandomClick() {
-  let outputArea = document.getElementById('outputArea');
+  let outputArea = document.getElementById("outputArea");
 
   let url = `http://api.giphy.com/v1/gifs/random?api_key=Lo2UvSSK7OqIo92KON44COUBmhDygoSN`;
 
@@ -14,7 +13,7 @@ function handleRandomClick() {
 }
 
 function handleTranslateClick() {
-  const query = document.getElementById('searchInput').value;
+  const query = document.getElementById("searchInput").value;
 
   if (query) {
     fetch(
@@ -22,27 +21,27 @@ function handleTranslateClick() {
     )
       .then((response) => response.json())
       .then((translateJsonData) => {
-        const outputArea = document.getElementById('outputArea');
+        const outputArea = document.getElementById("outputArea");
         url = translateJsonData.data.images.fixed_height.url;
         outputArea.innerHTML = `<img src="${url}">`;
       })
       .catch((error) => {
-        console.log('Error fetching GIF:', error);
+        console.log("Error fetching GIF:", error);
         outputArea.innerHTML = `<p>Failed to load GIFs.</p>`;
       });
   } else {
-    alert('Please type something to search!');
+    alert("Please type something to search!");
   }
 }
 
-let offset = '';
+let offset = "";
 const pageSize = 10;
 
 function handleSearchClick() {
-  let query = document.getElementById('searchInput').value;
+  let query = document.getElementById("searchInput").value;
 
-  if (query === '') {
-    alert('Please type something to search!');
+  if (query === "") {
+    alert("Please type something to search!");
   }
 
   fetch(
@@ -59,11 +58,11 @@ function handleSearchClick() {
         </div>
       `
         )
-        .join('');
+        .join("");
       outputArea.innerHTML = processedResponse;
     })
     .catch((error) => {
-      console.error('Error fetching GIF:', error);
+      console.error("Error fetching GIF:", error);
       outputArea.innerHTML = `<p>Failed to load GIFs.</p>`;
     });
 }
