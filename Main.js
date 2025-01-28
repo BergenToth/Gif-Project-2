@@ -222,17 +222,15 @@ let randomJsonData = {
 
 let outputArea = document.getElementById('outputArea');
 
-let url = `http://api.giphy.com/v1/gifs/random?api_key=Lo2UvSSK7OqIo92KON44COUBmhDygoSN`
+let url = `http://api.giphy.com/v1/gifs/random?api_key=Kbz9sk36gLHfHLYlEUkrmxc3TfFdwNO7`
 
 fetch(url)
 .then((response) => response.json())
 .then((randomJsonData) => {
   setTimeout(() => {
-    let title = randomJsonData.data.title;
     let url = randomJsonData.data.images.fixed_height.url
     let out = `<div><img src='${url}'></img></div>`
-      outputArea.innerHTML = out
-    console.log(title, url)    
+      outputArea.innerHTML = out    
   }, 10)
 })
 }
@@ -461,18 +459,18 @@ function handleTranslateClick() {
     }
   }
 
-
-const translateButton = document.getElementById('translateButton');
-
-translateButton.addEventListener('click', () => {
-  const query = document.getElementById('searchInput').value.trim();
+  const query = document.getElementById('searchInput').value;
+  
 
   if (query) {
-    fetch(`http://api.giphy.com/v1/gifs/translate?api_key=Lo2UvSSK7OqIo92KON44COUBmhDygoSN&s=${query}`)
+    fetch(`http://api.giphy.com/v1/gifs/translate?api_key=Kbz9sk36gLHfHLYlEUkrmxc3TfFdwNO7&s=${query}`)
     .then(response => response.json())
     .then(translateJsonData => {
+      setTimeout(() => {
       const outputArea = document.getElementById('outputArea');
-      outputArea.innerHTML = `<img src="${translateJsonData.data.images.fixed_height.url}">`
+      url = translateJsonData.data.images.fixed_height.url
+      outputArea.innerHTML = `<img src="${url}">`
+    }, 10)
     })
     .catch(error => {
       console.log('Error fetching GIF:', error);
@@ -480,8 +478,11 @@ translateButton.addEventListener('click', () => {
   } else {
     alert('Please type something to search!');
   }
-});
+
 }
+
+
+
 
 
 
