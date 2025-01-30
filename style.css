@@ -40,20 +40,6 @@ body {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#outputArea {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  padding: 20px;
-  margin-top: 20px;
-  border: 1px solid darkgray;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
-  height: 400px;
-}
 
 .offset-button {
   background-color: lightcyan;
@@ -65,51 +51,42 @@ body {
   cursor: pointer;
 }
 
+#disabled:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#outputArea {
+  display: grid;
+  gap: 15px;
+  margin-top: 20px;
+  width: 90%;
+  max-width: 900px;
+  justify-content: center;
+}
+
+
 .grid-item {
-  display: inline-block;
-  margin: 10px;
   text-align: center;
-  width: 200px;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
 @media screen and (max-width: 320px) {
-  h1 {
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .js-buttons-container {
-    flex-direction: column;
-    display: flex;
-  }
-
-  #searchInput {
-    margin-bottom: 10px;
-    width: 100%;
-  }
-
-  .js-button, .offset-button {
-    margin-bottom: 10px;
-    width: 100%;
-  }
 
   #outputArea {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px; 
-  }
-
-  .grid-item {
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
+
 @media (max-width: 768px) {
   .js-buttons-container {
     display: flex;
@@ -123,22 +100,17 @@ img {
     width: 100%; 
   }
 
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
   #outputArea {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    grid-template-columns: repeat(2, 200px);
   }
 }
 
-@media (min-width: 769px) {
-  .grid-item {
-    flex: 1 1 30%;
-    max-width: 30%;
-  }
-
+@media (min-width: 1025px) {
   #outputArea {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    grid-template-columns: repeat(3, 200px);
   }
 }

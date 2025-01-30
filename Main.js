@@ -1,29 +1,31 @@
+const APIKEY = 'Lo2UvSSK7OqIo92KON44COUBmhDygoSN'
+const outputArea = document.getElementById("outputArea");
+let offset = 0;
+const pageSize = 12;
+
 function handleRandomClick() {
-  let outputArea = document.getElementById("outputArea");
-
-  let url = `http://api.giphy.com/v1/gifs/random?api_key=Lo2UvSSK7OqIo92KON44COUBmhDygoSN`;
-
+  let url = `https://api.giphy.com/v1/gifs/random?api_key=${APIKEY}`;
   fetch(url)
     .then((response) => response.json())
     .then((randomJsonData) => {
-      let url = randomJsonData.data.images.fixed_height.url;
-      let out = `<div><img src='${url}'></img></div>`;
-      outputArea.innerHTML = out;
+      let gifUrl = randomJsonData.data.images.fixed_height.url;
+      outputArea.innerHTML = `<div><img src="${gifUrl}"></div>`;
+    })
+    .catch((error) => {
+      console.error("Error fetching GIF:", error);
+      outputArea.innerHTML = `<p>Failed to load GIF.</p>`;
     });
 }
 
 function handleTranslateClick() {
-  const query = document.getElementById("searchInput").value;
-
+  let query = document.getElementById("searchInput").value;
+  let gifUrl = `https://api.giphy.com/v1/gifs/translate?api_key=${APIKEY}&s=${query}`
   if (query) {
-    fetch(
-      `http://api.giphy.com/v1/gifs/translate?api_key=Lo2UvSSK7OqIo92KON44COUBmhDygoSN&s=${query}`
-    )
+    fetch(gifUrl)
       .then((response) => response.json())
       .then((translateJsonData) => {
-        const outputArea = document.getElementById("outputArea");
-        url = translateJsonData.data.images.fixed_height.url;
-        outputArea.innerHTML = `<img src="${url}">`;
+        gifUrl = translateJsonData.data.images.fixed_height.url;
+        outputArea.innerHTML = `<div><img src="${gifUrl}"></div>`;
       })
       .catch((error) => {
         console.log("Error fetching GIF:", error);
@@ -34,32 +36,29 @@ function handleTranslateClick() {
   }
 }
 
-let offset = "";
-const pageSize = 10;
-
 function handleSearchClick() {
   let query = document.getElementById("searchInput").value;
+  let url = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${APIKEY}&limit=${pageSize}&offset=${offset}`
 
   if (query === "") {
     alert("Please type something to search!");
+    return;
   }
 
-  fetch(
-    `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=Lo2UvSSK7OqIo92KON44COUBmhDygoSN&limit=${pageSize}&offset=${offset}`
-  )
+  fetch(url)
     .then((response) => response.json())
     .then((searchJsonData) => {
       const gifs = searchJsonData.data;
       const processedResponse = gifs
         .map(
           (gif) => `
-        <div style="display: inline-block; text-align: center;">
-          <img src="${gif.images.fixed_height.url}" alt="${gif.title}" />
+        <div class="grid-item">
+          <img src="${gif.images.fixed_height.url}" />
         </div>
       `
         )
-        .join("");
-      outputArea.innerHTML = processedResponse;
+        .join('');
+      outputArea.innerHTML = processedResponse;     
     })
     .catch((error) => {
       console.error("Error fetching GIF:", error);
@@ -68,13 +67,23 @@ function handleSearchClick() {
 }
 
 function offsetIncrease() {
+  const decreaseButton = document.getElementById('disabled');
   offset += pageSize;
   handleSearchClick();
+
+  if (offset > 0) {
+    decreaseButton.disabled = false;
+  }
 }
 
 function offsetDecrease() {
+  const decreaseButton = document.getElementById('disabled');
   if (offset >= pageSize) {
     offset -= pageSize;
     handleSearchClick();
+
+    if (offset === 0) {
+      decreaseButton.disabled = true;
+    }
   }
 }
